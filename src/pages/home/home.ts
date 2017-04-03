@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 
 import { NavController } from 'ionic-angular';
+import { NativeStorage } from '@ionic-native/native-storage';
 
 import { FirebaseListObservable, AngularFireDatabase } from 'angularfire2';
 
@@ -9,9 +10,16 @@ import { FirebaseListObservable, AngularFireDatabase } from 'angularfire2';
   templateUrl: 'home.html'
 })
 export class HomePage {
+  isConnected:boolean;
   listado : FirebaseListObservable<any>;
-  constructor(public navCtrl: NavController, public database: AngularFireDatabase) {
+  constructor(private nativeStorage: NativeStorage,public navCtrl: NavController, public database: AngularFireDatabase) {
     this.listado=this.database.list('/movies');
+    this.isConnected=false;
+    
+    
+  }
+  
+  uploadMovies(){
     this.listado.push({
       title:'Buscando a Nemo',
       opinion:'Pinche nemo guapo',
@@ -27,7 +35,7 @@ export class HomePage {
       opinion:'...',
       ranking: '4/5'
     });
-    
   }
+
 
 }

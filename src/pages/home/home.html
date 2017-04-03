@@ -7,7 +7,13 @@
 </ion-header>
 
 <ion-content padding>
+
+
+<button ion-button full (click)='uploadMovies()'>Enviar</button>
 <ion-list>
+<ion-item>
+  <h2 color="danger">No tienes conexión a internet</h2>
+</ion-item>
      <ion-item *ngFor='let item of listado | async'>
        <h2 color="primary">{{item.title}}</h2>
        <h3>{{item.opinion}}</h3>
